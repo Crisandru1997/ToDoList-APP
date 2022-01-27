@@ -11,7 +11,7 @@ def listado_tareas(request):
     proyectos = Proyecto.objects.all().order_by('id')
     form_proyectos = nuevoProyecto(request)
     form_tareas = nueva_tarea_general(request)
-    return render(request, 'appToDo/todas_las_tareas.html', {'proyectos':proyectos, 'form_proyectos':form_proyectos, 'form_tareas':form_tareas})
+    return render(request, 'appToDo/base.html', {'proyectos':proyectos, 'form_proyectos':form_proyectos, 'form_tareas':form_tareas})
 
 def nuevoProyecto(request):
     if request.method == 'POST':

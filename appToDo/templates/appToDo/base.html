@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://css.gg/add.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="contenedor">
+        <aside class="sidebar">
+            <h2 class="disable-select">Tareas</h2>
+            <hr class="hr-1">
+            <!-- Listado de los proyectos -->
+            <ul class="listado-proyectos">
+                {%for proyecto in proyectos %}
+                    <div class="contenedor-proyectos">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="{{ proyecto.color }}" /></svg>
+                        <li><a href="{% url 'proyecto_seleccionado' proyecto=proyecto.titulo_proyecto %}" class="disable-select">{{ proyecto.titulo_proyecto }}</a></li>
+                    </div>
+                {% endfor %}
+            </ul>
+            <hr class="hr-2">
+            <!-- Listado de otros (configuración, cerrar sesión) -->
+            <ul class="listado-otros">
+                <li><a href="#" class="disable-select">Configuración</a></li>
+                <li><a href="#" class="disable-select">Cerrar sesión</a></li>
+            </ul>
+            <!-- Agregar nuevo proyecto -->
+            <div class="contenedor-nuevo-proyecto">
+                <hr class="hr-3">
+                <div class="nuevo-proyecto">
+                    <svg
+                    width="42"
+                    height="42"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
+                        fill="currentColor"
+                    />
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M13 7C13 6.44772 12.5523 6 12 6C11.4477 6 11 6.44772 11 7V11H7C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H11V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H13V7Z"
+                        fill="currentColor"
+                    />
+                    </svg>
+                    <h3 class="disable-select">Nuevo proyecto</h3>
+                </div>
+            </div>
+        </aside>
+        <main class="contenedor-main">
+            {% block content %}
+                <!-- Aqui va todo el demas contenido -->
+            {% endblock %}
+        </main>
+    </div>
+</body>
+</html>
