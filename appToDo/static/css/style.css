@@ -104,11 +104,138 @@ body{
     padding-left: 7px;
 }
 
+/*  =============== TODO: LISTADO DE TAREAS ===============  */
 
 .contenedor .contenedor-main{
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     margin-left: 300px;
+    padding: 20px 50px 10px 50px;
+    position: relative;
 }
+
+.titulo-principal-tareas{
+    color: #626262;
+    margin-bottom: 15px;
+    margin-top: 40px;
+    justify-content: center;
+}
+.contenedor-tareas{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    background-color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    align-items: center;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(222,222,222,0.92); 
+    box-shadow: 0px 0px 3px 0px rgba(222,222,222,0.92);
+}
+/* Boton y nombre de la tarea */
+.titulo-boton-tarea{
+    display: flex;
+    align-items: center;
+}
+.titulo-boton-tarea p{
+    margin-left: 10px;
+}
+
+/* Tipo de tarea y fecha de vencimiento de la tarea. */
+.tipo-fecha-tarea{
+    display: flex;
+    align-items: center;
+}
+.tipo-proyecto{
+    padding-right: 20px;
+    border-right: 1px solid #d6d6d6;
+}
+.fecha-vencimiento{
+    padding-left: 20px;
+    border-left: 1px solid #d6d6d6;
+    color: #1BC936;
+}
+
+/* Mensaje mostrado en caso de que no haya tareas */
+.no-hay-tareas{
+    text-align: center;
+    color: #626262;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.tarea-completada{
+    text-decoration: line-through;
+}
+
+/* Sección para agregar nuevas tareas */
+
+.agregar-tarea-general{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.formulario-tarea{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.button-tarea{
+    display: flex;
+    align-self: center;
+    align-content: center;
+    width: 70%;
+}
+.tipo-vencimiento-tarea{
+    display: flex;
+    width: 30%;
+}
+.button-tarea button{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+.input-agregar-tarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-left: 10px;
+}
+.input-seleccion-proyecto{
+    background-color: #f3f4f5;
+    color: #7c7c7c;
+    border: none;
+    outline: none;
+    width: 100%;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 16px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.input-fecha-vencimiento{
+    background-color: #f3f4f5;
+    color: #7c7c7c;
+    border: none;
+    border-radius: 3px;
+    width: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
+    outline: none;
+    font-size: 16px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.input-fecha-vencimiento::-webkit-calendar-picker-indicator{
+    filter: invert(0.6);
+    cursor: pointer;
+  }
+
+
+/*  =============== TODO: OTROS DETALLES ===============  */
 
 /* Evitar copiar el texto */
 .disable-select {

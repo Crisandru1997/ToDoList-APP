@@ -1,0 +1,73 @@
+{% extends 'appToDo/base.html' %}
+<!-- Listado de todos los proyectos en sidebar -->
+{% block listado_proyectos%}
+    {%for proyecto in proyectos %}
+        <div class="contenedor-proyectos">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="{{ proyecto.color }}" /></svg>
+            <li><a href="{% url 'proyecto_seleccionado' proyecto=proyecto.titulo_proyecto %}" class="disable-select">{{ proyecto.titulo_proyecto }}</a></li>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+<!-- Listado de todas las tareas del día de hoy -->
+{% block listado_tareas_hoy %}
+    <h1 class="titulo-principal-tareas">Hoy</h1>
+    {% if not tareas_hoy %}
+        <div class="no-hay-tareas">
+            <p>No has agregado tareas &#128543;</p>
+        </div>
+    {% else %}
+            {% for tarea in tareas_hoy %}
+            <div class="contenedor-tareas">
+                <div class="titulo-boton-tarea">
+                    <a href="{% url 'completar_tarea' pk=tarea.pk %}"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="#d6d6d6" /></svg></a>
+                    <p>{{ tarea.titulo_tarea }}</p>
+                </div>
+                <div class="tipo-fecha-tarea">
+                    <p class="tipo-proyecto">{{ tarea.titulo_proyecto }}</p>
+                    <p class="fecha-vencimiento">{{ tarea.fecha_vencimiento }}</p>
+                </div>
+            </div>
+            {% endfor %}
+    {% endif %}
+{% endblock %}
+
+<!-- Listado de todas las tareas completadas -->
+{% block listado_tareas_completadas %}
+<h1 class="titulo-principal-tareas">Completadas</h1>
+{% if not tareas_completadas %}
+    <div class="no-hay-tareas">
+        <p>No has agregado tareas &#128543;</p>
+    </div>
+{% else %}
+        {% for tarea in tareas_completadas %}
+        <div class="contenedor-tareas">
+            <div class="titulo-boton-tarea">
+                <a href="{% url 'descompletar_tarea' pk=tarea.pk %}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#d6d6d6" class="bi bi-check-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/></svg></a>
+                <p class="tarea-completada">{{ tarea.titulo_tarea }}</p>
+            </div>
+            <div class="tipo-fecha-tarea">
+                <p class="tipo-proyecto">{{ tarea.titulo_proyecto }}</p>
+                <p class="fecha-vencimiento">{{ tarea.fecha_vencimiento }}</p>
+            </div>
+        </div>
+        {% endfor %}
+{% endif %}
+{% endblock %}
+
+<!-- Agregar una nueva tarea general -->
+{% block agregar_tarea_general %}
+    <div class="contenedor-tareas">
+        <form method="POST" class="formulario-tarea">
+            {% csrf_token %}
+            <div class="button-tarea">
+                <button type="submit"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z" fill="currentColor"/></svg></button>
+                {{ form_tarea.titulo_tarea }}
+            </div>
+            <div class="tipo-vencimiento-tarea">
+                {{ form_tarea.titulo_proyecto }}
+                {{ form_tarea.fecha_vencimiento }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
