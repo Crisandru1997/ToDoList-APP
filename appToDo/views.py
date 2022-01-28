@@ -32,11 +32,13 @@ def nuevoProyecto(request):
 
 def proyecto_seleccionado(request, proyecto):
     # Seleccionamos el proyecto seleccionado.
+    proyectos = Proyecto.objects.all().order_by('id')
     proyecto = get_object_or_404(Proyecto, titulo_proyecto=proyecto)
     # Generamos el formulario para ese proyecto en especifico.
     form = nueva_tarea_proyecto(request, proyecto)
-    listado_tareas = Tarea.objects.filter(titulo_proyecto=proyecto)
-    return render(request, 'appToDo/proyecto.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas})
+    listado_tareas = Tarea.objects.filter(completado=False, titulo_proyecto=proyecto).order_by('id')
+    tareas_completadas = Tarea.objects.filter(completado=True, titulo_proyecto=proyecto)
+    return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos})
 
 # Se creara una nueva tarea segun el proyecto seleccionado.
 def nueva_tarea_proyecto(request, proyecto):

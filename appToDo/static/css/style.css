@@ -46,6 +46,9 @@ body{
 .listado-proyectos{
     overflow-y: auto;
 }
+.listado-proyectos a{
+    color: black;
+}
 .contenedor-proyectos{
     display: flex;
     padding-left: 20px;
@@ -167,7 +170,7 @@ body{
     text-decoration: line-through;
 }
 
-/* Sección para agregar nuevas tareas */
+/* Sección para agregar nuevas tareas generales */
 
 .agregar-tarea-general{
     position: absolute;
@@ -232,8 +235,33 @@ body{
 .input-fecha-vencimiento::-webkit-calendar-picker-indicator{
     filter: invert(0.6);
     cursor: pointer;
-  }
+}
 
+/*  =============== TODO: PROYECTOS INDIVIDUALES ===============  */
+.titulo-proyecto-individual{
+    display: flex;
+    align-items: center;
+}
+.titulo-proyecto-individual h1{
+    padding-right: 20px;
+    border-right: 1px solid #626262;
+}
+.titulo-proyecto-individual h2{
+    font-size: 32px;
+    padding-left: 20px;
+    border-left: 1px solid #626262;
+}
+.ingresar-tarea-individual{
+    width: 85%;
+}
+.vencimiento-proyecto{
+    width: 15%;
+}
+
+.sin-fecha{
+    border: none;
+    padding-right: 0;
+}
 
 /*  =============== TODO: OTROS DETALLES ===============  */
 

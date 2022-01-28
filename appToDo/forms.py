@@ -17,7 +17,17 @@ class tareaFormProyecto(forms.ModelForm):
         model = Tarea
         fields = ('titulo_tarea', 'fecha_vencimiento')
         widgets = {
-            'fecha_vencimiento': DateInput(attrs={'type': 'date'}),
+            'fecha_vencimiento': DateInput(attrs={
+                'type': 'date',
+                'class': 'input-fecha-vencimiento',
+                }
+            ),
+            'titulo_tarea': forms.TextInput(
+                attrs={
+                    'class': 'input-agregar-tarea',
+                    'placeholder':'Añadir tarea...',
+                }
+            ),
         }
 
 class tareaFormGeneral(forms.ModelForm):

@@ -20,7 +20,7 @@ class Proyecto(models.Model):
 class Tarea(models.Model):
     titulo_tarea = models.CharField(max_length=80)
     fecha_creacion = models.DateTimeField(default=timezone.now)
-    fecha_vencimiento = models.DateField(blank=True, validators=[MinValueValidator(datetime.date.today)])
+    fecha_vencimiento = models.DateField(blank=True, null=True, validators=[MinValueValidator(datetime.date.today)])
     completado = models.BooleanField(default=False)
     titulo_proyecto = models.ForeignKey(Proyecto, 
                                         on_delete=models.CASCADE, 
