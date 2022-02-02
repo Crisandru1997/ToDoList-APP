@@ -12,13 +12,8 @@ def index(request):
     todas_las_tareas_hoy = Tarea.objects.filter(completado=False).order_by('id')
     tareas_completadas = Tarea.objects.filter(completado=True)
     form_nueva_tarea = nueva_tarea_general(request)
-    return render(request, 'appToDo/listado_tareas.html', {'proyectos':todos_los_proyectos, 'tareas_hoy':todas_las_tareas_hoy, 'tareas_completadas':tareas_completadas, 'form_tarea':form_nueva_tarea})
-
-def listado_tareas(request):
-    proyectos = Proyecto.objects.all().order_by('id')
-    form_proyectos = nuevoProyecto(request)
-    form_tareas = nueva_tarea_general(request)
-    return render(request, 'appToDo/base.html', {'proyectos':proyectos, 'form_proyectos':form_proyectos, 'form_tareas':form_tareas})
+    form_nuevo_proyecto = nuevoProyecto(request)
+    return render(request, 'appToDo/listado_tareas.html', {'proyectos':todos_los_proyectos, 'tareas_hoy':todas_las_tareas_hoy, 'tareas_completadas':tareas_completadas, 'form_tarea':form_nueva_tarea, 'form_proyecto':form_nuevo_proyecto})
 
 def nuevoProyecto(request):
     if request.method == 'POST':
@@ -26,6 +21,7 @@ def nuevoProyecto(request):
         if form.is_valid():
             post = form.save()
             post.save()
+            form = proyectoForm()
     else:
         form = proyectoForm()
     return form
@@ -36,9 +32,10 @@ def proyecto_seleccionado(request, proyecto):
     proyecto = get_object_or_404(Proyecto, titulo_proyecto=proyecto)
     # Generamos el formulario para ese proyecto en especifico.
     form = nueva_tarea_proyecto(request, proyecto)
+    form_nuevo_proyecto = nuevoProyecto(request)
     listado_tareas = Tarea.objects.filter(completado=False, titulo_proyecto=proyecto).order_by('id')
     tareas_completadas = Tarea.objects.filter(completado=True, titulo_proyecto=proyecto)
-    return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos})
+    return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos, 'form_proyecto':form_nuevo_proyecto})
 
 # Se creara una nueva tarea segun el proyecto seleccionado.
 def nueva_tarea_proyecto(request, proyecto):

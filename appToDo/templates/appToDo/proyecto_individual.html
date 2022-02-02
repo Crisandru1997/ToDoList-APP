@@ -11,6 +11,16 @@
     {% endfor %}
 {% endblock %}
 
+<!-- Agregar un nuevo proyecto -->
+{% block nuevo_proyecto %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form_proyecto.titulo_proyecto }}
+        {{ form_proyecto.color }}
+        <button type="submit" hidden>Guardar</button>
+    </form>
+{% endblock %}
+
 <!-- Listado de todas las tareas del día de hoy -->
 {% block listado_tareas_hoy %}
     <div class="titulo-proyecto-individual">

@@ -9,7 +9,14 @@ class proyectoForm(forms.ModelForm):
         model = Proyecto
         fields = ('titulo_proyecto','color')
         widgets = {
-            'color': forms.RadioSelect(choices=Proyecto.COLORES)   
+            'color': forms.RadioSelect(choices=Proyecto.COLORES, attrs={
+                'class': 'seleccion-color'    
+            }),
+            'titulo_proyecto': DateInput(attrs={
+                'class': 'input-agregar-proyecto',
+                'placeholder':'Añadir proyecto...',
+                }
+            ),
         }
         
 class tareaFormProyecto(forms.ModelForm):

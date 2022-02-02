@@ -51,6 +51,13 @@
                     </svg>
                     <h3 class="disable-select">Nuevo proyecto</h3>
                 </div>
+                <section class="modal">
+                    <div class="modal__container">
+                        <h3 class="titulo-modal">Nuevo proyecto</h3>
+                        {% block nuevo_proyecto %}
+                        {% endblock %}
+                    </div>
+                </section>
             </div>
         </aside>
         <main class="contenedor-main">
@@ -71,5 +78,6 @@
             </div>
         </main>
     </div>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
