@@ -12,7 +12,7 @@
 <body>
     <div class="contenedor">
         <aside class="sidebar">
-            <a href="{% url 'index' %}"><h2 class="disable-select">Tareas</h2></a>
+            <a href="{% url 'index' %}"><h2 class="disable-select">{{ user.username }}</h2></a>
             <hr class="hr-1">
             <!-- Listado de los proyectos -->
             <ul class="listado-proyectos">
@@ -23,7 +23,7 @@
             <!-- Listado de otros (configuración, cerrar sesión) -->
             <ul class="listado-otros">
                 <li><a href="#" class="disable-select">Configuración</a></li>
-                <li><a href="#" class="disable-select">Cerrar sesión</a></li>
+                <li><a href="{% url 'logout' %}" class="disable-select">Cerrar sesión</a></li>
             </ul>
             <!-- Agregar nuevo proyecto -->
             <div class="contenedor-nuevo-proyecto">

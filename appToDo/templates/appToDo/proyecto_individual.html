@@ -1,14 +1,16 @@
 {% extends 'appToDo/base.html' %}
 <!-- Listado de todos los proyectos en sidebar -->
 {% block listado_proyectos%}
-    {%for proyecto in proyectos %}
-        <a href="{% url 'proyecto_seleccionado' proyecto=proyecto.titulo_proyecto %}" class="disable-select">
+    {% if not proyectos %}
+        <p>Vacio...</p>
+    {% else %}
+        {%for proyecto in proyectos %}
             <div class="contenedor-proyectos">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="{{ proyecto.color }}" /></svg>
-                <li>{{ proyecto.titulo_proyecto }}</li>
+                <li><a href="{% url 'proyecto_seleccionado' proyecto=proyecto.titulo_proyecto %}" class="disable-select">{{ proyecto.titulo_proyecto }}</a></li>
             </div>
-        </a>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endblock %}
 
 <!-- Agregar un nuevo proyecto -->

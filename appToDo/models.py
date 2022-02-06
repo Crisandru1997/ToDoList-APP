@@ -1,6 +1,8 @@
 from operator import mod
 from django.db import models
 from django.core.validators import MinValueValidator
+# from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils import timezone
 import datetime
 
@@ -12,6 +14,7 @@ class Proyecto(models.Model):
     ('orange', 'orange'),
     ]
     titulo_proyecto = models.CharField(max_length=20)
+    propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     color = models.CharField(choices=COLORES, default=None, max_length=20)
     
     def __str__(self):

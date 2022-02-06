@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def index(request):
-    todos_los_proyectos = Proyecto.objects.all().order_by('id')
+    todos_los_proyectos = Proyecto.objects.filter(propietario=request.user)
     todas_las_tareas_hoy = Tarea.objects.filter(completado=False).order_by('id')
     tareas_completadas = Tarea.objects.filter(completado=True)
     form_nueva_tarea = nueva_tarea_general(request)
@@ -19,7 +19,8 @@ def nuevoProyecto(request):
     if request.method == 'POST':
         form = proyectoForm(request.POST)
         if form.is_valid():
-            post = form.save()
+            post = form.save(commit=False)
+            post.propietario = request.user
             post.save()
             form = proyectoForm()
     else:
@@ -28,7 +29,7 @@ def nuevoProyecto(request):
 
 def proyecto_seleccionado(request, proyecto):
     # Seleccionamos el proyecto seleccionado.
-    proyectos = Proyecto.objects.all().order_by('id')
+    proyectos = Proyecto.objects.filter(propietario=request.user)
     proyecto = get_object_or_404(Proyecto, titulo_proyecto=proyecto)
     # Generamos el formulario para ese proyecto en especifico.
     form = nueva_tarea_proyecto(request, proyecto)
