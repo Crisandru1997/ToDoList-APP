@@ -38,6 +38,10 @@ class tareaFormProyecto(forms.ModelForm):
         }
 
 class tareaFormGeneral(forms.ModelForm):
+    def __init__(self,usuario,*args,**kwargs):
+        super (tareaFormGeneral,self ).__init__(*args,**kwargs) # populates the post
+        self.fields['titulo_proyecto'].queryset = Proyecto.objects.filter(propietario=usuario)
+        
     class Meta:
         model = Tarea
         fields = ('titulo_tarea', 'fecha_vencimiento', 'titulo_proyecto')

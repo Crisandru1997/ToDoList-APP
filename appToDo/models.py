@@ -21,6 +21,7 @@ class Proyecto(models.Model):
         return self.titulo_proyecto 
 
 class Tarea(models.Model):
+    propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     titulo_tarea = models.CharField(max_length=80)
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_vencimiento = models.DateField(blank=True, null=True, validators=[MinValueValidator(datetime.date.today)])
