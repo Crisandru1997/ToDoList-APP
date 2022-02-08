@@ -1,6 +1,8 @@
 from dataclasses import field, fields
 from django import forms
 from .models import Proyecto, Tarea
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.forms.widgets import DateInput
 import datetime
 
@@ -62,4 +64,18 @@ class tareaFormGeneral(forms.ModelForm):
                     'class': 'input-seleccion-proyecto',
                 }
             ),
+        }
+
+class formularioRegistro(UserCreationForm):
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Usuario', 'class': 'input-login'}))
+    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'placeholder': 'Correo', 'class': 'input-login'}))
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class': 'input-login'}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Confirmar Contraseña', 'class': 'input-login'}))
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1' ,'password2')
+        # Con esto podemos eliminar los textos de ayuda.
+        help_texts = {k:"" for k in fields}
+        widgets = {
+            'myfield': forms.TextInput(attrs={'class': 'myfieldclass'}),
         }

@@ -12,6 +12,7 @@ class Proyecto(models.Model):
     ('blue', 'blue'),
     ('green', 'green'),
     ('orange', 'orange'),
+    ('gray', 'gray')
     ]
     titulo_proyecto = models.CharField(max_length=20)
     propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)

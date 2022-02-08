@@ -6,6 +6,8 @@ from appToDo.forms import proyectoForm
 from .models import Proyecto, Tarea
 from .forms import proyectoForm, tareaFormGeneral, tareaFormProyecto
 from django.shortcuts import get_object_or_404
+from .forms import formularioRegistro
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
@@ -40,7 +42,7 @@ def proyecto_seleccionado(request, proyecto):
     if esta:
         # Seleccionamos el proyecto seleccionado.
         proyectos = Proyecto.objects.filter(propietario=request.user)
-        proyecto = get_object_or_404(Proyecto, titulo_proyecto=proyecto)
+        proyecto = get_object_or_404(Proyecto,propietario=request.user, titulo_proyecto=proyecto)
         # Generamos el formulario para ese proyecto en especifico.
         form = nueva_tarea_proyecto(request, proyecto)
         form_nuevo_proyecto = nuevoProyecto(request)
@@ -86,3 +88,32 @@ def descompletar_tarea(request, pk):
     tarea = get_object_or_404(Tarea, pk=pk)
     tarea.descompletar()
     return redirect(request.META['HTTP_REFERER'])
+
+def registro(request):
+    if request.method == 'POST':
+        # Recibimos los datos del registro.
+        form = formularioRegistro(request.POST)
+        # Verificamos si los datos ingresados son validos.
+        if form.is_valid():
+            # Guardamos al nuevo usuario.
+            form.save()
+            # Enviamos el nombre de usuario al inicio.
+            user = request.POST['username']
+            nuevo_usuario = authenticate(username=request.POST['username'], password=request.POST['password1'])
+            login(request, nuevo_usuario)
+            proyectoDefault(nuevo_usuario)
+            return redirect('inicio')
+    else:
+        form = formularioRegistro()
+    return render(request, 'registration/registro.html', {'form':form})
+
+# Proyecto creado por default.
+def proyectoDefault(usuario):
+    form = proyectoForm()
+    post = form.save(commit=False)
+    post.propietario = usuario
+    post.titulo_proyecto = 'Todos'
+    post.color = 'Gray'
+    post.save()
+    form = proyectoForm()
+    return form

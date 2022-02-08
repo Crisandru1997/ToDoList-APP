@@ -11,19 +11,19 @@
 </head>
 
 <body>
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
+    <div class="contenedor-login">
+        <div id="contenedor-form">
             <!-- Tabs Titles -->
-            <h2 class="active">Sign In</h2>
-            <h2 class="inactive underlineHover">Sign Up</h2>
+            <h2 class="titulo-form">Iniciar Sesión</h2>
             <!-- Login Form -->
             <form method="POST">
                 {% csrf_token %}
-                <input type="text" id="login" class="fadeIn second" name="username" placeholder="Usuario..." />
-                <input type="text" id="password" class="fadeIn third" name="password" placeholder="Contraseña..." />
-                <input type="submit" class="fadeIn fourth" value="Iniciar Sesión" />
+                <input type="text" id="login" class="input-login" name="username" placeholder="Usuario..." />
+                <input type="password" id="password" class="input-login" name="password" placeholder="Contraseña..." />
+                <input type="submit" class="input-submit" value="Iniciar Sesión" />
             </form>
         </div>
+        <p class="login-registrarte">¿No tienes una cuenta? Puedes <a href="{% url 'registro' %}">registrarte</a>.</p>
     </div>
 </body>
 
