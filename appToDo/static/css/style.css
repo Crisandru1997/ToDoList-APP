@@ -43,6 +43,14 @@ body{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.nombre-usuario{
+    width: 100%;
+    text-align: center;
+}
+.nombre-usuario span{
+    color: #07941c;
+}
+
 /* Listado de los proyectos */
 .listado-proyectos{
     overflow-y: auto;
@@ -170,8 +178,16 @@ body{
 }
 .tarea-completada{
     text-decoration: line-through;
+    color: rgb(126, 126, 126);
 }
 
+.vence-hoy{
+    color: rgb(199, 131, 4);
+}
+
+.vencido{
+    color: rgb(206, 6, 6);
+}
 /* Sección para agregar nuevas tareas generales */
 
 .agregar-tarea-general{

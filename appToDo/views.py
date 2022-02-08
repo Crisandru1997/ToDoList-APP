@@ -16,7 +16,8 @@ def index(request):
     tareas_completadas = Tarea.objects.filter(completado=True, propietario=request.user)
     form_nueva_tarea = nueva_tarea_general(request)
     form_nuevo_proyecto = nuevoProyecto(request)
-    return render(request, 'appToDo/listado_tareas.html', {'proyectos':todos_los_proyectos, 'tareas_hoy':todas_las_tareas_hoy, 'tareas_completadas':tareas_completadas, 'form_tarea':form_nueva_tarea, 'form_proyecto':form_nuevo_proyecto})
+    fecha_actual = datetime.date.today
+    return render(request, 'appToDo/listado_tareas.html', {'proyectos':todos_los_proyectos, 'tareas_hoy':todas_las_tareas_hoy, 'tareas_completadas':tareas_completadas, 'form_tarea':form_nueva_tarea, 'form_proyecto':form_nuevo_proyecto, 'fecha_actual':fecha_actual})
 
 def nuevoProyecto(request):
     if request.method == 'POST':
@@ -39,6 +40,7 @@ def verificar(request, proyecto):
 
 def proyecto_seleccionado(request, proyecto):
     esta = verificar(request, proyecto)
+    fecha_actual = datetime.date.today
     if esta:
         # Seleccionamos el proyecto seleccionado.
         proyectos = Proyecto.objects.filter(propietario=request.user)
@@ -48,7 +50,7 @@ def proyecto_seleccionado(request, proyecto):
         form_nuevo_proyecto = nuevoProyecto(request)
         listado_tareas = Tarea.objects.filter(completado=False, titulo_proyecto=proyecto, propietario=request.user).order_by('id')
         tareas_completadas = Tarea.objects.filter(completado=True, titulo_proyecto=proyecto, propietario=request.user)
-        return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos, 'form_proyecto':form_nuevo_proyecto})
+        return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos, 'form_proyecto':form_nuevo_proyecto, 'fecha_actual':fecha_actual})
     else:
         return render(request, 'appToDo/error.html', {})
 

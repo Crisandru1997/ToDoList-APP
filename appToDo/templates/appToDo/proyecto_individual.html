@@ -5,12 +5,21 @@
         <p>Vacio...</p>
     {% else %}
         {%for proyecto in proyectos %}
-        <a href="{% url 'proyecto_seleccionado' proyecto=proyecto.titulo_proyecto %}" class="disable-select"></a>
-            <div class="contenedor-proyectos">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="{{ proyecto.color }}" /></svg>
-                <li>{{ proyecto.titulo_proyecto }}</li>
-            </div>
-        </a>
+            {% if proyecto.titulo_proyecto == 'Todos' %}
+                <a href="{% url 'inicio' %}" class="disable-select">
+                    <div class="contenedor-proyectos">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="{{ proyecto.color }}" /></svg>
+                        <li>{{ proyecto.titulo_proyecto }}</li>
+                    </div>
+                </a>
+            {% else %}
+                <a href="{% url 'proyecto_seleccionado' proyecto=proyecto.titulo_proyecto %}" class="disable-select">
+                    <div class="contenedor-proyectos">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="{{ proyecto.color }}" /></svg>
+                        <li>{{ proyecto.titulo_proyecto }}</li>
+                    </div>
+                </a>
+            {% endif %}
         {% endfor %}
     {% endif %}
 {% endblock %}
@@ -45,7 +54,13 @@
                 <div class="tipo-fecha-tarea">
                     {% if tarea.fecha_vencimiento %}
                         <p class="tipo-proyecto">{{ tarea.titulo_proyecto }}</p>
-                        <p class="fecha-vencimiento">{{ tarea.fecha_vencimiento }}</p>
+                        {% if fecha_actual < tarea.fecha_vencimiento %}
+                            <p class="fecha-vencimiento">{{ tarea.fecha_vencimiento }}</p>
+                        {% elif fecha_actual == tarea.fecha_vencimiento %}
+                            <p class="fecha-vencimiento vence-hoy">{{ tarea.fecha_vencimiento }}</p>
+                        {% else %}
+                            <p class="fecha-vencimiento vencido">{{ tarea.fecha_vencimiento }}</p>
+                        {% endif %}
                     {% else %}
                         <p class="tipo-proyecto sin-fecha">{{ tarea.titulo_proyecto }}</p>
                     {% endif %}
@@ -71,10 +86,10 @@
             </div>
             <div class="tipo-fecha-tarea">
                 {% if tarea.fecha_vencimiento %}
-                    <p class="tipo-proyecto">{{ tarea.titulo_proyecto }}</p>
-                    <p class="fecha-vencimiento">{{ tarea.fecha_vencimiento }}</p>
+                    <p class="tipo-proyecto tarea-completada">{{ tarea.titulo_proyecto }}</p>
+                    <p class="fecha-vencimiento tarea-completada">{{ tarea.fecha_vencimiento }}</p>
                 {% else %}
-                    <p class="tipo-proyecto sin-fecha">{{ tarea.titulo_proyecto }}</p>
+                    <p class="tipo-proyecto sin-fecha tarea-completada">{{ tarea.titulo_proyecto }}</p>
                 {% endif %}
             </div>
         </div>

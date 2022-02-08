@@ -12,7 +12,8 @@
 <body>
     <div class="contenedor">
         <aside class="sidebar">
-            <a href="{% url 'inicio' %}"><h2 class="disable-select">{{ user.username }}</h2></a>
+            <a href="{% url 'inicio' %}"><h2 class="disable-select">Tareas</h2></a>
+            <p class="nombre-usuario">Hola <span>@{{ user.username }}</span> &#128522</p>
             <hr class="hr-1">
             <!-- Listado de los proyectos -->
             <ul class="listado-proyectos">
