@@ -18,8 +18,8 @@
             <!-- Login Form -->
             <form method="POST">
                 {% csrf_token %}
-                <input type="text" id="login" class="input-login" name="username" placeholder="Usuario..." />
-                <input type="password" id="password" class="input-login" name="password" placeholder="Contraseña..." />
+                <input type="text" id="login" class="input-login" name="username" placeholder="Usuario..." pattern="[a-z]{1,9}" title="El nombre de usuario debe tener de 1 a 9 caracteres." required />
+                <input type="password" id="password" class="input-login" name="password" placeholder="Contraseña..." required/>
                 <input type="submit" class="input-submit" value="Iniciar Sesión" />
             </form>
         </div>

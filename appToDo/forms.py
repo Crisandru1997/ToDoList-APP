@@ -67,8 +67,8 @@ class tareaFormGeneral(forms.ModelForm):
         }
 
 class formularioRegistro(UserCreationForm):
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Usuario', 'class': 'input-login'}))
-    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'placeholder': 'Correo', 'class': 'input-login'}))
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Usuario', 'class': 'input-login', 'pattern':'[a-z]{1,9}', 'title':'El nombre de usuario debe tener de 1 a 9 caracteres.'}))
+    email = forms.EmailField(label='', widget=forms.TextInput(attrs={'placeholder': 'Correo', 'class': 'input-login', 'type':'email'}))
     password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Contraseña', 'class': 'input-login'}))
     password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Confirmar Contraseña', 'class': 'input-login'}))
     class Meta:
