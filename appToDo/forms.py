@@ -35,6 +35,7 @@ class tareaFormProyecto(forms.ModelForm):
                 attrs={
                     'class': 'input-agregar-tarea',
                     'placeholder':'Añadir tarea...',
+                    'required': 'True',
                 }
             ),
         }

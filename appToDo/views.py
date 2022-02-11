@@ -24,12 +24,23 @@ def nuevoProyecto(request):
         form = proyectoForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.propietario = request.user
-            post.save()
-            form = proyectoForm()
+            estado = verificarProyecto(post.titulo_proyecto, request.user)
+            if estado:
+                post.propietario = request.user
+                post.save()
+                form = proyectoForm()
+            else:
+                form = proyectoForm()
     else:
         form = proyectoForm()
     return form
+
+def verificarProyecto(proyecto, user):
+    p = Proyecto.objects.filter(titulo_proyecto=proyecto, propietario=user).exists()
+    if p:
+        return False
+    else:
+        return True
 
 def verificar(request, proyecto):
     esta = get_object_or_404(Proyecto, propietario=request.user, titulo_proyecto=proyecto)
@@ -43,11 +54,11 @@ def proyecto_seleccionado(request, proyecto):
     fecha_actual = datetime.date.today
     if esta:
         # Seleccionamos el proyecto seleccionado.
+        form_nuevo_proyecto = nuevoProyecto(request)
         proyectos = Proyecto.objects.filter(propietario=request.user)
         proyecto = get_object_or_404(Proyecto,propietario=request.user, titulo_proyecto=proyecto)
         # Generamos el formulario para ese proyecto en especifico.
         form = nueva_tarea_proyecto(request, proyecto)
-        form_nuevo_proyecto = nuevoProyecto(request)
         listado_tareas = Tarea.objects.filter(completado=False, titulo_proyecto=proyecto, propietario=request.user).order_by('id')
         tareas_completadas = Tarea.objects.filter(completado=True, titulo_proyecto=proyecto, propietario=request.user)
         return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos, 'form_proyecto':form_nuevo_proyecto, 'fecha_actual':fecha_actual})
@@ -57,7 +68,7 @@ def proyecto_seleccionado(request, proyecto):
 # Se creara una nueva tarea segun el proyecto seleccionado.
 def nueva_tarea_proyecto(request, proyecto):
     if request.method == 'POST':
-        form = tareaFormProyecto(request.user ,request.POST)
+        form = tareaFormProyecto(request.POST, request.user)
         if form.is_valid():
             tarea = form.save(commit=False)
             tarea.titulo_proyecto = proyecto
@@ -119,3 +130,18 @@ def proyectoDefault(usuario):
     post.save()
     form = proyectoForm()
     return form
+
+def eliminarTarea(request, pk):
+    tarea = Tarea.objects.get(pk=pk)
+    tarea.delete()
+    return redirect(request.META['HTTP_REFERER'])
+
+def eliminarProyecto(request, pk):
+    proyecto = Proyecto.objects.get(pk=pk)
+    proyecto.delete()
+    return redirect(request.META['HTTP_REFERER'])
+
+def eliminarProyectoIndividual(request, pk):
+    proyecto = Proyecto.objects.get(pk=pk)
+    proyecto.delete()
+    return redirect('inicio')

@@ -1,3 +1,4 @@
+from math import fabs
 from operator import mod
 from django.db import models
 from django.core.validators import MinValueValidator
@@ -14,7 +15,7 @@ class Proyecto(models.Model):
     ('orange', 'orange'),
     ('gray', 'gray')
     ]
-    titulo_proyecto = models.CharField(max_length=20)
+    titulo_proyecto = models.CharField(max_length=20, null=False)
     propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     color = models.CharField(choices=COLORES, default=None, max_length=20)
     
@@ -22,8 +23,8 @@ class Proyecto(models.Model):
         return self.titulo_proyecto 
 
 class Tarea(models.Model):
-    propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
-    titulo_tarea = models.CharField(max_length=80)
+    propietario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=False, blank=False)
+    titulo_tarea = models.CharField(max_length=80, null=False, blank=False)
     fecha_creacion = models.DateTimeField(default=timezone.now)
     fecha_vencimiento = models.DateField(blank=True, null=True, validators=[MinValueValidator(datetime.date.today)])
     completado = models.BooleanField(default=False)
