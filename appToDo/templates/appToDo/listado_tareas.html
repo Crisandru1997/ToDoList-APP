@@ -70,7 +70,12 @@
                 width="24" height="24" viewBox="0 0 120 120">
                 <circle cx="60" cy="60" r="50" fill="#d6d6d6" />
             </svg></a>
-        <p>{{ tarea.titulo_tarea }}</p>
+        <form method="POST" class="formulario-editor">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ tarea.pk }}">
+            <input class="editar-tarea-hoy" name="titulo" type="text" value="{{ tarea.titulo_tarea }}">
+            <button type="submit" hidden>Guardar</button>
+        </form>
     </div>
     <div class="tipo-fecha-tarea">
         {% if tarea.fecha_vencimiento %}

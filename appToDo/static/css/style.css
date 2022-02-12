@@ -254,6 +254,20 @@ body{
     align-self: center;
 }
 
+/* TODO: TRABAJANDO AQUI */
+.formulario-editor{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.editar-tarea-hoy{
+    border: none;
+    outline: none;
+    align-self: center;
+    font-size: 16px;
+}
+
 /* Sección para agregar nuevas tareas generales */
 
 .agregar-tarea-general{
@@ -426,7 +440,6 @@ body{
     height: 20px;
     margin-right: 10px;
 }
-
 
 
 

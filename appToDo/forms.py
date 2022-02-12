@@ -67,6 +67,11 @@ class tareaFormGeneral(forms.ModelForm):
             ),
         }
 
+class actualizarTarea(forms.ModelForm):
+    class Meta:
+        model = Tarea
+        fields = ('titulo_tarea',)
+
 class formularioRegistro(UserCreationForm):
     username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Usuario', 'class': 'input-login', 'pattern':'[a-z]{1,9}', 'title':'El nombre de usuario debe tener de 1 a 9 caracteres.'}))
     email = forms.EmailField(label='', widget=forms.TextInput(attrs={'placeholder': 'Correo', 'class': 'input-login', 'type':'email'}))
