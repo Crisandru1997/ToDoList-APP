@@ -360,7 +360,7 @@ body{
 }
 .titulo-proyecto-individual h1{
     padding-right: 20px;
-    border-right: 1px solid #626262;
+    border-right: 2px solid #626262;
 }
 .titulo-proyecto-individual h2{
     font-size: 32px;

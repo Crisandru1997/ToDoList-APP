@@ -59,7 +59,6 @@
 {% block listado_tareas_hoy %}
 <div class="titulo-proyecto-individual">
     <h1 class="titulo-principal-tareas">Hoy</h1>
-    <!-- <h2 class="titulo-principal-tareas">{{ proyecto }}</h2> -->
     <form method="POST" class="formulario-editar-proyecto">
         {% csrf_token %}
         <input type="hidden" name="id-proyecto" value="{{ proyecto.pk }}">
