@@ -254,7 +254,7 @@ body{
     align-self: center;
 }
 
-/* TODO: TRABAJANDO AQUI */
+/* EDITAR NOMBRE DE UNA TAREA */
 .formulario-editor{
     display: flex;
     align-items: center;
@@ -267,6 +267,23 @@ body{
     align-self: center;
     font-size: 16px;
 }
+
+/* EDITAR NOMBRE DE UN PROYECTO */
+.formulario-editar-proyecto{
+    display: flex;
+    align-items: center;
+    margin-top: 28px;
+    margin-left: 10px;
+}
+.editar-proyecto-hoy{
+    font-size: 32px;
+    font-weight: bold;
+    background-color: #f3f4f5;
+    border: none;
+    outline: none;
+    color: #626262;
+}
+
 
 /* Sección para agregar nuevas tareas generales */
 
@@ -339,6 +356,7 @@ body{
 .titulo-proyecto-individual{
     display: flex;
     align-items: center;
+    align-content: center;
 }
 .titulo-proyecto-individual h1{
     padding-right: 20px;

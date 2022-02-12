@@ -63,7 +63,10 @@ def proyecto_seleccionado(request, proyecto):
         listado_tareas = Tarea.objects.filter(completado=False, titulo_proyecto=proyecto, propietario=request.user).order_by('id')
         tareas_completadas = Tarea.objects.filter(completado=True, titulo_proyecto=proyecto, propietario=request.user)
         nueva_tarea = actualizar_tarea(request)
-        return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos, 'form_proyecto':form_nuevo_proyecto, 'fecha_actual':fecha_actual, 'nueva_tarea':nueva_tarea})
+        nuevo_nombre_proyecto = actualizar_proyecto(request)
+        if nuevo_nombre_proyecto:
+            return redirect('proyecto_seleccionado', proyecto=nuevo_nombre_proyecto)
+        return render(request, 'appToDo/proyecto_individual.html', {'proyecto':proyecto, 'form':form, 'tareas':listado_tareas, 'tareas_completadas':tareas_completadas, 'proyectos':proyectos, 'form_proyecto':form_nuevo_proyecto, 'fecha_actual':fecha_actual, 'nueva_tarea':nueva_tarea, 'nuevo_proyecto':nuevo_nombre_proyecto})
     else:
         return render(request, 'appToDo/error.html', {})
 
@@ -154,8 +157,8 @@ def actualizar_tarea(request):
     nuevo = Tarea.objects.filter(pk=id).update(titulo_tarea=titulo)
     return nuevo
 
-    # instance = get_object_or_404(Tarea, pk=pk)
-    # form = actualizarTarea(request.POST, instance=instance)
-    # if form.is_valid():
-    #     form.save()
-    # return render(request, 'appToDo/listado_tareas.html', {'form': form})
+def actualizar_proyecto(request):
+    id = request.POST.get('id-proyecto')
+    titulo = request.POST.get('titulo-proyecto')
+    proyecto = Proyecto.objects.filter(pk=id).update(titulo_proyecto=titulo)
+    return titulo
