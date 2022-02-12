@@ -154,11 +154,15 @@ def eliminarProyectoIndividual(request, pk):
 def actualizar_tarea(request):
     id = request.POST.get('id')
     titulo = request.POST.get('titulo')
-    nuevo = Tarea.objects.filter(pk=id).update(titulo_tarea=titulo)
+    if titulo != '':
+        nuevo = Tarea.objects.filter(pk=id).update(titulo_tarea=titulo)
+    else:
+        nuevo = Tarea()
     return nuevo
 
 def actualizar_proyecto(request):
     id = request.POST.get('id-proyecto')
     titulo = request.POST.get('titulo-proyecto')
-    proyecto = Proyecto.objects.filter(pk=id).update(titulo_proyecto=titulo)
+    if titulo != '':
+        proyecto = Proyecto.objects.filter(pk=id).update(titulo_proyecto=titulo)
     return titulo
