@@ -185,6 +185,7 @@ body{
 .titulo-boton-tarea{
     display: flex;
     align-items: center;
+    width: 100%;
 }
 .titulo-boton-tarea p{
     margin-left: 10px;
@@ -194,6 +195,9 @@ body{
 .tipo-fecha-tarea{
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    width: 400px;
+    padding-left: 20px;
 }
 .tipo-proyecto{
     padding-right: 20px;
@@ -205,10 +209,8 @@ body{
     border-right: 2px solid #d6d6d6;
     color: #1BC936;
     padding-right: 20px;
+    white-space: nowrap;
 }
-/* .aun-queda{
-    border-right: 1px solid #d6d6d6;
-} */
 
 /* Mensaje mostrado en caso de que no haya tareas */
 .no-hay-tareas{
@@ -259,6 +261,7 @@ body{
     display: flex;
     align-items: center;
     margin-left: 10px;
+    width: 100%;
 }
 
 .editar-tarea-hoy{
@@ -266,6 +269,8 @@ body{
     outline: none;
     align-self: center;
     font-size: 16px;
+    width: 100%;
+    white-space: nowrap;
 }
 
 /* EDITAR NOMBRE DE UN PROYECTO */
@@ -458,7 +463,5 @@ body{
     height: 20px;
     margin-right: 10px;
 }
-
-
 
 

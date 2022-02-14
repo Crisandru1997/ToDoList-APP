@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@media only screen and (max-width: 1114px) {
+    .sidebar{
+        display: none;
+    }
+    .contenedor .contenedor-main{
+        margin-left: 0px;
+        width: 100%;
+        position: relative;
+    }
+    .agregar-tarea-general{
+        display: none;
+    }
+    .inicio-mobil{
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    /* Titulo del inicio */
+    .inicio-mobil a h2{
+        font-size: 50px;
+        font-family: 'Bungee', cursive;
+        color: #3a3a3a;
+        text-align: center;
+        display: inline;
+    }
+    /* Nombre de usuario */
+    .inicio-mobil p{
+        margin-top: 10px;
+        text-align: center;
+    }
+    .inicio-mobil p span{
+        color: #07941c;
+    }
+    /* Agregar una nueva tarea */
+    /* .agregar-tarea-mobil{
+
+    } */
+    .add-task-mobil{
+        padding: 10px;
+        border-radius: 200px;
+        border: none;
+        color: white;
+        background-color: #3a3a3a;
+        cursor: pointer;
+        transition-duration: 700ms;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30px;
+        right: 0;
+        margin-right: 30px;
+    }
+    .add-task-mobil:hover{
+        color: #3a3a3a;
+        background-color: white;
+        transition-duration: 700ms;
+    }
+    .add-task-contenido{
+        width: 100%;
+        padding: 10px;
+        background-color: #3a3a3a;
+        border-radius: 10px;
+    }
+    .add-task-contenido h4{
+        color: #fff;
+        margin-bottom: 5px;
+        font-size: 23px;
+    }
+    .formulario-mobil-tarea{
+        display: flex;
+        justify-content:space-around;
+        border: 1px solid blue;
+    }
+    .contenedor-nueva-tarea-mobil{
+        width: 80%;
+    }
+    .contenedor-nueva-tarea-mobil input{
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: #555555;
+        color: #fff;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-top-left-radius: 7px;
+        border-bottom-left-radius: 7px;
+    }
+    .contenedor-nueva-tarea-mobil input::placeholder{
+        color: rgb(230, 230, 230);
+    }
+    .opciones-tarea-menu{
+        width: 20%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .opciones-tarea-menu select{
+        background-color: #555555;
+        color: #fff;
+        border: none;
+    }
+    .opciones-tarea-menu input[type="date"]{
+        background-color: #555555;
+        color: #fff;
+        border: none;
+        padding-left: 15px;
+        text-align-last: center;
+    }
+    .opciones-tarea-menu input[type="date"]::-webkit-calendar-picker-indicator{
+        filter: invert(1);
+        padding-left: 0;
+        text-align-last: left;
+    }
+
+}
+@media only screen and (min-width: 1114px) {
+    .agregar-tarea-general{
+        display: block;
+    }
+    .inicio-mobil{
+        display: none;
+    }
+    .agregar-tarea-mobil{
+        display: none;
+    }
+}
