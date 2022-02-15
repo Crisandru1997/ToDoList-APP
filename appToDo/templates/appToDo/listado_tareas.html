@@ -167,3 +167,29 @@
     </form>
 </div>
 {% endblock %}
+
+<!-- TODO: AGREGAR UNA TAREA EN TELEFONO -->
+{% block agregar_tarea_general_movil %}
+    <form method="POST" class="formulario-mobil-tarea">
+        {% csrf_token %}
+        <div class="contenedor-nueva-tarea-mobil">
+            {{ form_tarea.titulo_tarea }}
+        </div>
+        <div class="opciones-tarea-menu">
+            {{ form_tarea.titulo_proyecto }}
+            {{ form_tarea.fecha_vencimiento }}
+        </div>
+    </form>
+{% endblock %}
+
+<!-- TODO: AGREGAR UN PROYECTO MOVIL -->
+{% block agregar_proyecto_movil %}
+<form method="POST" class="formulario-mobil-proyecto">
+    {% csrf_token %}
+    <div class="contenedor-nueva-tarea-mobil">
+        {{ form_proyecto.titulo_proyecto }}
+    </div>
+    {{ form_proyecto.color }}
+    <button type="submit" hidden>Guardar</button>
+</form>
+{% endblock %}
