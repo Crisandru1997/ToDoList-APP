@@ -68,6 +68,10 @@
                     <h2 class="disable-select">Tareas</h2>
                 </a>
                 <p>Hola <span>@{{ user.username }}</span> &#128522 &nbsp;&nbsp;</p>
+                <div class="contenedor-proyectos-mobil">
+                    {% block listado_proyectos_movil %}
+                    {% endblock %}
+                </div>
             </div>
             <div class="tareas-hoy">
                 {% block listado_tareas_hoy %}
@@ -93,6 +97,7 @@
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    class="add-proyecto-mobil-svg"
                     >
                     <path d="M2 5H14V7H2V5Z" fill="currentColor" />
                     <path d="M2 9H14V11H2V9Z" fill="currentColor" />
@@ -110,7 +115,7 @@
             </div>
             <!-- Agregar una tarea movil -->
             <div class="boton-movil-tarea">
-                <button class="add-task-mobil" id="show-tarea"><svg width="50" height="50" viewBox="0 0 24 24" fill="none"
+                <button class="add-task-mobil" id="show-tarea"><svg class="add-task-mobil-svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M5 16C5 15.4477 5.44772 15 6 15H14C14.5523 15 15 15.4477 15 16C15 16.5523 14.5523 17 14 17H6C5.44772 17 5 16.5523 5 16Z"

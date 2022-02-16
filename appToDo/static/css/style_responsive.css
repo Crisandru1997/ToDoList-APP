@@ -225,3 +225,115 @@
         display: none;
     }
 }
+@media only screen and (max-width: 1114px) and (min-width: 360px){
+    .sidebar-bar{
+        display: none;
+    }
+    .contenedor{
+        width: 100vw;
+        height: 100vh;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    .contenedor-tareas{
+        padding-right: 2px;
+    }
+    /* TODO: LISTADO DE PROYECTOS */
+
+    .contenedor-proyectos-mobil{
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        padding-left: 8px;
+        padding-right: 8px;
+        width: 100%;
+    }
+    .contenedor-proyectos-mobil::after{
+        box-shadow: -20px 1px 20px 0 #f00 inset; 
+    }
+    .contenedor-proyectos-mobil::-webkit-scrollbar{
+        display: none;
+    }
+    .proyecto-individual-mobil{
+        margin-right: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .proyecto-individual-mobil a{
+        color: #3a3a3a;
+        align-self: center;
+        margin-top: 0px;
+        font-weight: 800;
+        font-size: 18px;
+    }
+
+    /* TODO: LISTADO DE TAREAS */
+
+    .titulo-boton-tarea{
+        width: 85%;
+    }
+    .tipo-fecha-tarea{
+        width: 15%;
+    }
+    /* Fecha no vencida */
+    .verde{
+        background-color: #2ebd43;
+    }
+    .verde .titulo-boton-tarea .formulario-editor .editar-tarea-hoy{
+        background-color: #2ebd43;
+        color: #fff;
+    }
+    /* Fecha por vencer */
+    .naranjo{
+        background-color: rgb(193, 140, 41);
+    }
+    .naranjo .titulo-boton-tarea .formulario-editor .editar-tarea-hoy{
+        background-color: rgb(193, 140, 41);
+        color: #fff;
+    }
+    /* Fecha vencida */
+    .rojo{
+        background-color: rgb(210, 51, 51);;
+    }
+    .rojo .titulo-boton-tarea .formulario-editor .editar-tarea-hoy{
+        background-color: rgb(210, 51, 51);;
+        color: #fff;
+    }
+
+    /* Botones inferiores: agregar tarea y proyecto */
+
+    .add-task-mobil{
+        width: 50px;
+        height: 50px;
+    }
+    .add-task-mobil-svg{
+        width: 30px;
+        height: 30px;
+    }
+
+    .add-proyecto-mobil{
+        width: 50px;
+        height: 50px;
+    }
+    .add-proyecto-mobil-svg{
+        width: 30px;
+        height: 30px;
+    }
+    /* Ocultar datos */
+    .tipo-proyecto{
+        display: none;
+    }
+    .fecha-vencimiento{
+        display: none;
+    }
+    .titulo-principal-tareas{
+        margin-top: 0px;
+    }
+}
