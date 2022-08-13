@@ -79,7 +79,7 @@ def nueva_tarea_proyecto(request, proyecto):
             tarea.titulo_proyecto = proyecto
             tarea.propietario = request.user
             tarea.save()
-            form = tareaFormGeneral()
+            #form = tareaFormGeneral()
     else:
         form = tareaFormProyecto()
     return form
